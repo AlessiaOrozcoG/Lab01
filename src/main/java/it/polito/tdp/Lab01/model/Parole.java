@@ -1,24 +1,26 @@
 package it.polito.tdp.Lab01.model;
 
-import java.util.List;
+import java.util.*;
 
 public class Parole {
-		
-	public Parole() {
-		//TODO
+	
+	List<String> parole; //INIZIALIZZO LISTA
+	
+	public Parole() {  //COSTRUTTORE
+		parole =  new LinkedList<String>();	//Inizializz base
 	}
 	
 	public void addParola(String p) {
-		//TODO
+		parole.add(p);		
 	}
 	
 	public List<String> getElenco() {
-		//TODO
-		return null;
+		Collections.sort(parole); //ORDINAMENTO ALFANUMERICO 
+		return parole;
 	}
 	
 	public void reset() {
-		// TODO
+		parole.removeAll(parole);
 	}
 
 }

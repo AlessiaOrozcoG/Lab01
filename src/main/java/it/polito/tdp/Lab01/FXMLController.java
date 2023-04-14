@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 
 public class FXMLController {
 	
-	Parole elenco ;
+	Parole elenco = new Parole();
 
     @FXML
     private ResourceBundle resources;
@@ -33,13 +33,37 @@ public class FXMLController {
     private TextArea txtResult;
 
     @FXML
+   
     void doInsert(ActionEvent event) {
-
-    }
+    	this.txtResult.clear();
+        this.txtResult.setEditable(false);
+    	if(this.txtParola.getText()=="") {
+    		this.txtResult.setText("Campo vuoto.\nInserisci parola da aggiungere alla lista!\n");
+    		
+    	}
+    	else {
+    		if(this.txtParola.getText().matches(".*[0-9].*")== true) {
+    			this.txtResult.setText("\nInserisci parola di senso compiuto!\n");
+    			return;
+    		} 
+    		else {
+				elenco.addParola(this.txtParola.getText());  
+				for(String s : elenco.getElenco() ) {
+					this.txtResult.appendText(s + "\n");
+				}
+				this.txtParola.clear();
+    		}
+				
+		}
+    			
+    		
+	}
+    
 
     @FXML
     void doReset(ActionEvent event) {
-
+    	elenco.reset();
+    	this.txtResult.setText(null);
     }
 
     @FXML
